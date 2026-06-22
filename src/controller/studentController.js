@@ -20,7 +20,7 @@ export const findStudent = async (req, res) => {
                 "status": 404,
                 "error": "Not Found",
                 "message": `Student with id ${req.params.id} not found`,
-                "path": req.params
+                "path": req.path
             }
         );
     }
@@ -37,14 +37,14 @@ export const deleteStudent = async (req, res) => {
                 "status": 404,
                 "error": "Not Found",
                 "message": `Student with id ${req.params.id} not found`,
-                "path": req.params
+                "path": req.path
             }
         );
     }
 }
 
 export const updateStudent = async (req, res) => {
-    const update = await service.updateStudent(req.params.id);
+    const update = await service.updateStudent(req.params.id, req.body);
     if(update) {
         return res.json(update);
     } else {
@@ -54,14 +54,14 @@ export const updateStudent = async (req, res) => {
                 "status": 404,
                 "error": "Not Found",
                 "message": `Student with id ${req.params.id} not found`,
-                "path": req.params
+                "path": req.path
             }
         );
     }
 }
 
 export const addScore = async (req, res) => {
-    const addScores = await service.addScore(req.params.id);
+    const addScores = await service.addScore(req.params.id, req.body.examName, req.body.score);
     if(addScores) {
         return res.status(204).send();
     } else {
@@ -71,14 +71,14 @@ export const addScore = async (req, res) => {
                 "status": 404,
                 "error": "Not Found",
                 "message": `Student with id ${req.params.id} not found`,
-                "path": req.params
+                "path": req.path
             }
         );
     }
 }
 
 export const findStudentsByName = async (req, res) => {
-    const findStudentsName = await service.findStudentsByName(req.params.id);
+    const findStudentsName = await service.findStudentsByName(req.params.name);
     if(findStudentsName) {
         return res.json(findStudentsName);
     } else {
@@ -87,7 +87,7 @@ export const findStudentsByName = async (req, res) => {
 }
 
 export const countStudentsByNames = async (req, res) => {
-    const countStudentsNames = await service.countStudentsByNames(req.params.id);
+    const countStudentsNames = await service.countStudentsByNames(req.query.names);
     if(countStudentsNames) {
         return res.json(countStudentsNames);
     } else {
@@ -96,7 +96,7 @@ export const countStudentsByNames = async (req, res) => {
 }
 
 export const findStudentsByMinScore = async (req, res) => {
-    const findStudentsMinScore = await service.findStudentsByMinScore(req.params.id);
+    const findStudentsMinScore = await service.findStudentsByMinScore(req.params.exam, req.params.nimScore);
     if(findStudentsMinScore) {
         return res.json(findStudentsMinScore);
     } else {

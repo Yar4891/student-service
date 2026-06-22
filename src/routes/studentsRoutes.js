@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {addStudent, deleteStudent, findStudent,addScore,countStudentsByNames,findStudentsByMinScore,
-    findStudentsByName,updateStudent} from "../service/studentService.js";
+    findStudentsByName,updateStudent} from "../controller/studentController.js";
 
 const router = Router();
 
