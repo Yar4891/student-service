@@ -4,7 +4,7 @@
   "description": "student web service",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemod src/server.js"
+    "dev": "nodemon src/server.js"
   },
   "keywords": [],
   "author": "Yar",

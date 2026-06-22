@@ -1,31 +1,50 @@
-export const addStudent = async (student) => {
-    // TODO: Implement  addStudent, return true if and false other
-}
+import * as repo from '../repository/studentRepository.js'
+
+export const addStudent = async (student) => repo.createStudent(student);
 
 export const findStudent = async (id) => {
-    // TODO:
-}
+    let student = repo.findStudentById(+id);
+    if(student){
+        student = {...student};
+        student.password = undefined;
+    }
+    return student;
+};
 
 export const deleteStudent = async (id) => {
-    // TODO:
-}
+    let student = repo.deleteStudent(+id);
+    if(student){
+        student.password = undefined;
+    }
+    return student;
+};
 
 export const updateStudent = async (id, data) => {
-    // TODO:
+    let student = repo.findStudentById(+id);
+    if(student){
+        student = {...student, ...data};
+        student = {...repo.updateStudent(student)};
+        student.scores = undefined;
+    }
+    return student;
 }
 
 export const addScore = async (id, exam, score) => {
-    // TODO:
+   const student = repo.findStudentById(+id);
+   if(student) {
+       student.scores[exam] = score;
+       repo.updateStudent(student);
+   }
+   return student;
 }
 
-export const findStudentsByName = async (name) => {
-    // TODO:
-}
+export const findStudentsByName = async (name) => repo.findStudentsByName(name).map(s =>
+    ({...s, password: undefined}));
 
 export const countStudentsByNames = async (names) => {
-    // TODO:
+    names = Array.isArray(names) ? names : [names];
+    return repo.countStudentsByNames(names);
 }
 
-export const findStudentsByMinScore = async (exam, minScore) =>{
-    // TODO:
-}
+export const findStudentsByMinScore = async (exam, minScore) =>
+    repo.findStudentsByMinScore(exam, minScore).map(s => ({...s, password: undefined}));
