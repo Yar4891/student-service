@@ -1,8 +1,8 @@
 import * as service from '../service/studentService.js';
 
 export const addStudent = async (req, res) => {
-    const sucsess = await service.addStudent(req.body);
-    if (sucsess) {
+    const success = await service.addStudent(req.body);
+    if (success) {
         return res.status(204).send();
     } else {
         return res.status(409).send();
@@ -27,9 +27,9 @@ export const findStudent = async (req, res) => {
 }
 
 export const deleteStudent = async (req, res) => {
-    const remove = await service.deleteStudent(req.params.id);
-    if(remove) {
-        return res.json(remove);
+    const student = await service.deleteStudent(req.params.id);
+    if(student) {
+        return res.json(student);
     } else {
         return res.status(404).send(
             {
@@ -44,9 +44,9 @@ export const deleteStudent = async (req, res) => {
 }
 
 export const updateStudent = async (req, res) => {
-    const update = await service.updateStudent(req.params.id, req.body);
-    if(update) {
-        return res.json(update);
+    const student = await service.updateStudent(req.params.id, req.body);
+    if(student) {
+        return res.json(student);
     } else {
         return res.status(404).send(
             {
@@ -61,8 +61,8 @@ export const updateStudent = async (req, res) => {
 }
 
 export const addScore = async (req, res) => {
-    const addScores = await service.addScore(req.params.id, req.body.examName, req.body.score);
-    if(addScores) {
+    const success = await service.addScore(req.params.id, req.body.examName, req.body.score);
+    if(success) {
         return res.status(204).send();
     } else {
         return res.status(404).send(
