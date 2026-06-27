@@ -4,6 +4,11 @@ import {addStudent, deleteStudent, findStudent,addScore,countStudentsByNames,fin
 
 const router = Router();
 
+
+
+
+
+
 router.post('/student', addStudent);
 router.get('/student/:id', findStudent);
 router.delete('/student/:id', deleteStudent);
@@ -12,5 +17,6 @@ router.patch('/score/student/:id', addScore);
 router.get('/students/name/:name', findStudentsByName);
 router.get('/quantity/students', countStudentsByNames);
 router.get('/students/exam/:exam/minscore/:minScore', findStudentsByMinScore);
+
 
 export default router;

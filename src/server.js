@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
-import studentsRoutes from "./routes/studentsRoutes.js";
+import studentRoutes from './routes/studentRoutes.js';
 import {MongoClient} from 'mongodb';
-import {init} from './repository/studentRepository.js'
+import {init} from './repository/studentRepository.js';
 
 dotenv.config();
 
@@ -14,10 +14,10 @@ const app = express();
 
 app.use(express.json());
 
-app.use(studentsRoutes);
+app.use(studentRoutes);
 
 app.use((req, res) =>
-    res.status(404).type('text/plane; charset=utf8').send('Not Found'));
+    res.status(404).type('text/plain; charset=utf-8').send('Not Found'));
 
 async function startServer() {
     try {
