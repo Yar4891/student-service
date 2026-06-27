@@ -4,11 +4,6 @@ import {addStudent, deleteStudent, findStudent,addScore,countStudentsByNames,fin
 
 const router = Router();
 
-
-
-
-
-
 router.post('/student', addStudent);
 router.get('/student/:id', findStudent);
 router.delete('/student/:id', deleteStudent);
