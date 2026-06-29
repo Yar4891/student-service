@@ -13,9 +13,9 @@ export const findStudent = async (id) => await repo.findStudentById(+id);
 
 export const deleteStudent = async (id) => await repo.deleteStudent(+id);
 
-export const updateStudent = async (id, data) => await repo.updateStudent(+id, data);
+export const updateStudent = async (id, data) => (await repo.updateStudent(+id, data)).toObject();
 
-export const addScore = async (id, exam, score) => repo.updateStudent(+id, {[`scores.${exam}`]: score});
+export const addScore = async (id, exam, score) => await repo.updateStudent(+id, {[`scores.${exam}`]: score});
 
 export const findStudentsByName = async (name) => await repo.findStudentsByName(name);
 
