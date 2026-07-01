@@ -57,6 +57,20 @@ describe('Student Service', () => {
             name: 'John Doe',
             password: 'secret'
         });
-        expect(mockRepo.findStudentById).toHaveBeenCalledWith(2)
+        expect(mockRepo.findStudentById).toHaveBeenCalledWith(2);
+    })
+    it('findStudent: find student by number', async () => {
+        mockRepo.findStudentById.mockResolvedValue({id: 3});
+        const result = await studentService.findStudent(3)
+        expect(result).toBeTruthy();
+        expect(mockRepo.findStudentById).toHaveBeenCalledWith(3);
+        expect(mockRepo.findStudentById).not.toHaveBeenCalledWith(NaN);
+    })
+    it('deleteStudent: find student by number', async () => {
+        mockRepo.deleteStudent.mockResolvedValue(true);
+        const result = await studentService.deleteStudent(4)
+        expect(result).toBeTruthy();
+        expect(mockRepo.deleteStudent).toHaveBeenCalledWith(4);
+        expect(mockRepo.deleteStudent).not.toHaveBeenCalledWith(5);
     })
 })
